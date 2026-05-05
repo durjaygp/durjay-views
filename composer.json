@@ -1,0 +1,27 @@
+{
+    "name": "durjaygp/durjay-views",
+    "description": "A unified polymorphic view counter for Laravel models.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "durjaygp"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Durjaygp\\DurjayViews\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Durjaygp\\DurjayViews\\DurjayViewsServiceProvider"
+            ]
+        }
+    }
+}
