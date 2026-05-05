@@ -1,6 +1,6 @@
 # Durjay Views
 
-A simple view counter for Laravel. Track views for Blogs, Products, Services, and more in a single table using a helper function or a trait.
+A simple view counter for Laravel. Track views for Blogs, Products, Services, and more in a single table using a helper function or a trait. It also includes an awesome Tailwind-designed dashboard for statistics.
 
 ## Installation
 
@@ -12,9 +12,9 @@ composer require durjaygp/durjay-views
 
 ## Setup
 
-1. Publish the migration:
+1. Publish the migration and views (optional):
 ```bash
-php artisan vendor:publish --provider="Durjaygp\DurjayViews\DurjayViewsServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Durjaygp\DurjayViews\DurjayViewsServiceProvider"
 ```
 
 2. Run the migrations:
@@ -59,4 +59,21 @@ To get the total view count (sum of all `views` increments):
 
 ```php
 echo $product->view_count;
+```
+
+## Dashboard Statistics
+
+This package provides a beautifully crafted Tailwind CSS dashboard to visualize your application's views.
+
+You can access the statistics dashboard at: `/durjay-views/stats`
+
+The dashboard includes:
+- View statistics for **Today** and **Yesterday**
+- **Total Unique** and **Today Unique** Views metrics
+- A gorgeous 7-day **Views Chart**
+- A **Recent Views Activity** table (displays Type, User/Guest, Date, and Total Views)
+
+You can publish the views to customize the design:
+```bash
+php artisan vendor:publish --provider="Durjaygp\DurjayViews\DurjayViewsServiceProvider" --tag="views"
 ```

@@ -16,4 +16,9 @@ class DurjayView extends Model
         'user_id',
         'views',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(config('auth.providers.users.model', \App\Models\User::class), 'user_id');
+    }
 }
