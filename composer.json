@@ -15,7 +15,10 @@
     "autoload": {
         "psr-4": {
             "Durjaygp\\DurjayViews\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {

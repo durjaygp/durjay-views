@@ -18,4 +18,5 @@ return array(
     '19e6faa27d773988183e0f384143fcad' => $vendorDir . '/illuminate/reflection/helpers.php',
     'f625ee536139dfb962a398b200bdb2bd' => $vendorDir . '/illuminate/support/functions.php',
     '72579e7bd17821bb1321b87411366eae' => $vendorDir . '/illuminate/support/helpers.php',
+    'a2abcb7b14dfe742b23dafb93e9c2223' => $baseDir . '/src/Helpers/helpers.php',
 );

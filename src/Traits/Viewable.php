@@ -2,38 +2,32 @@
 
 namespace Durjaygp\DurjayViews\Traits;
 
-use Durjaygp\DurjayViews\Models\View;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Facades\Request;
+use Durjaygp\DurjayViews\Models\DurjayView;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 trait Viewable
 {
-    public function views(): MorphMany
+    /**
+     * Get all of the views for the model.
+     */
+    public function durjayViews(): HasMany
     {
-        return $this->morphMany(View::class, 'viewable');
+        return $this->hasMany(DurjayView::class, 'type_id')->where('type', strtolower(class_basename($this)));
     }
 
-    public function recordView(): void
+    /**
+     * Record a view for this model.
+     */
+    public function recordDurjayView(): void
     {
-        $ip = request()->ip();
-        
-        // Anti-spam: Check if this IP viewed this specific model in the last 60 mins
-        $alreadyViewed = $this->views()
-            ->where('ip_address', $ip)
-            ->where('created_at', '>=', now()->subMinutes(60))
-            ->exists();
-
-        if (!$alreadyViewed) {
-            $this->views()->create([
-                'ip_address' => $ip,
-                'user_agent' => request()->userAgent(),
-                'user_id' => auth()->id(),
-            ]);
-        }
+        trackDurjayViews(strtolower(class_basename($this)), $this->getKey());
     }
 
+    /**
+     * Get the total view count.
+     */
     public function getViewCountAttribute(): int
     {
-        return $this->views()->count();
+        return $this->durjayViews()->sum('views');
     }
-
 }
