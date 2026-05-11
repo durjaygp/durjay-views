@@ -1,5 +1,7 @@
 # Durjay Views
 
+![Durjay Views](screenshoot/thumbnail.jpg)
+
 A simple view counter for Laravel. Track views for Blogs, Products, Services, and more in a single table using a helper function or a trait. It also includes an awesome Tailwind-designed dashboard for statistics.
 
 ## Installation
@@ -65,6 +67,8 @@ echo $product->view_count;
 
 This package provides a beautifully crafted Tailwind CSS dashboard to visualize your application's views.
 
+![Views Dashboard](screenshoot/dashboard.png)
+
 You can access the statistics dashboard at: `/durjay-views/stats`
 
 The dashboard includes:
@@ -77,3 +81,33 @@ You can publish the views to customize the design:
 ```bash
 php artisan vendor:publish --provider="Durjaygp\DurjayViews\DurjayViewsServiceProvider" --tag="views"
 ```
+
+## Admin Route (Protected Access)
+
+By default the dashboard is accessible at `/durjay-views/stats`. If you want to protect it behind authentication or admin middleware, publish the config and set your preferred middleware:
+
+```bash
+php artisan vendor:publish --provider="Durjaygp\DurjayViews\DurjayViewsServiceProvider" --tag="config"
+```
+
+Then update `config/durjay-views.php`:
+
+```php
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Middleware
+    |--------------------------------------------------------------------------
+    | Middleware applied to the /durjay-views/stats route.
+    | Use 'auth' to restrict to logged-in users, or 'auth,admin' for admins.
+    |
+    */
+    'middleware' => ['web', 'auth'],
+];
+```
+
+The route is registered automatically — no extra steps needed after changing the config.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
